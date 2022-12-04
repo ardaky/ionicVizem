@@ -1,0 +1,43 @@
+<ion-app>
+  <ion-menu menuId="menum" contentId="menu" class="arkaplanimavi">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title *ngIf="servis.oturumKontrol()">
+          <ion-icon name="person-outline" size="small"></ion-icon><ion-text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{servis.aktifUye.adsoyad}}</ion-text>
+        </ion-title>
+        <ion-title *ngIf="!servis.oturumKontrol()">Lütfen Oturum Açınız</ion-title>
+      </ion-toolbar>
+
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item routerLink="/">
+          <ion-icon name="home-outline" slot="start" class="ikonum"></ion-icon>
+          <ion-label>Ana Sayfa</ion-label>
+        </ion-item>
+        <ion-item routerLink="/kategoriler">
+          <ion-icon name="grid-outline" slot="start" class="ikonum"></ion-icon>
+          <ion-label>Kategoriler</ion-label>
+        </ion-item>
+        <ion-item routerLink="/uyeler">
+          <ion-icon name="people-outline" slot="start" class="ikonum"></ion-icon>
+          <ion-label>Üyeler</ion-label>
+        </ion-item>
+        <ion-item *ngIf="!servis.oturumKontrol()" routerLink="/login">
+          <ion-icon name="warning" slot="start" class="ikonum"></ion-icon>
+          <ion-label>Oturum Aç</ion-label>
+        </ion-item>
+        <ion-item *ngIf="servis.oturumKontrol()" (click)="oturumKapat()">
+          <ion-icon name="exit-outline" slot="start" class="ikonum"></ion-icon>
+          <ion-label class="beyazyazi">Çıkış Yap</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    <ion-footer>
+      <small class="beyazyazi">Product by Arda Kerem Yolcu</small>
+    </ion-footer>
+  </ion-menu>
+
+
+  <ion-router-outlet id="menu"></ion-router-outlet>
+</ion-app>

@@ -1,0 +1,75 @@
+{
+  "users": [
+    {
+      "id": 16,
+      "adsoyad": "Cihat Uzun",
+      "mail": "cihan@gmail.com",
+      "admin": "0",
+      "parola": "123",
+      "kayittarihi": "1670009870281",
+      "duzenlemetarihi": "1670100149948"
+    },
+    {
+      "id": 17,
+      "adsoyad": "Arda Kerem Yolcu",
+      "mail": "arda.kerem88@gmail.com",
+      "admin": "1",
+      "parola": "147258",
+      "kayittarihi": "1670099602559",
+      "duzenlemetarihi": "1670099602559"
+    },
+    {
+      "id": 18,
+      "adsoyad": "Mehmet Önal",
+      "mail": "mehmet@gmail.com",
+      "admin": "0",
+      "parola": "123456",
+      "kayittarihi": "1670103747413",
+      "duzenlemetarihi": "1670103747413"
+    },
+    {
+      "id": 20,
+      "adsoyad": "Mahmut Tuncer",
+      "mail": "tuncer@mail.commm",
+      "admin": "1",
+      "parola": "123mahmut",
+      "kayTarih": null,
+      "duztarih": null,
+      "kayittarihi": "1670115888856",
+      "duzenlemetarihi": "1670116019364"
+    },
+    {
+      "id": 21,
+      "adsoyad": "Nizamettin Kılıç",
+      "mail": "nizamettin@gmail.com",
+      "admin": "0",
+      "parola": "123456",
+      "kayTarih": null,
+      "duztarih": null,
+      "kayittarihi": "1670146206489",
+      "duzenlemetarihi": "1670146211742"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "adi": "Elektronik",
+      "kayittarihi": "1670110523912",
+      "duzenlemetarihi": "1670112160135"
+    },
+    {
+      "id": 2,
+      "adi": "Beyaz Eşya",
+      "kayittarihi": "1670113952456",
+      "duzenlenmetarihi": null,
+      "duzenlemetarihi": "1670113952456"
+    },
+    {
+      "id": 3,
+      "adi": "Ev Aletleri",
+      "kayittarihi": "1670113961504",
+      "duzenlenmetarihi": null,
+      "duzenlemetarihi": "1670113961504"
+    }
+  ]
+}

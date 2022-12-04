@@ -1,0 +1,145 @@
+<div class="ion-page">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Kategoriler</ion-title>
+      <ion-buttons slot="start">
+        <ion-menu-button menu="menum"></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-title color="red" *ngIf="!servis.aktifUye.admin">Lütfen Oturum Açınız</ion-title>
+  <ion-content *ngIf="servis.aktifUye.admin == 1 || servis.aktifUye.admin == 0">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button id="ekle-modal" expand="block" [disabled]="servis.aktifUye.admin == 0 ">Kategori Ekle</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-modal #modalekleme trigger="ekle-modal" [presentingElement]="presentingElement6">
+        <ng-template>
+          <form [formGroup]="frm" (ngSubmit)="kategoriEkleDuzenle()">
+            <ion-header>
+              <ion-toolbar color="tertiary">
+                <ion-title>Kategori Ekleme</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="modalekleme.dismiss()">Kapat</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-list>
+              <ion-item>
+                <ion-label>Kategori Adı</ion-label>
+                <ion-input type="text" formControlName="adi"></ion-input>
+                
+              </ion-item>
+              <ion-input type="hidden" formControlName="id"></ion-input>
+                <ion-input type="hidden" formControlName="kayittarihi"></ion-input>
+                <ion-input type="hidden" formControlName="duzenlenmetarihi"></ion-input>
+            </ion-list>
+            <ion-row>
+              <ion-col>
+                <ion-button expand="block" color="success"><ion-input type="submit" value="Kaydet"></ion-input></ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button (click)="modalekleme.dismiss()" expand="block">Kapat</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </ng-template>
+      </ion-modal>
+
+
+      <ion-list *ngFor="let kat of kategoriler">
+        <ion-item>
+          <ion-label>Kategori İd</ion-label>
+          <ion-text>{{kat.id}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Kategori Adı</ion-label>
+          <ion-text>{{kat.adi}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Kayıt Tarihi</ion-label>
+          <ion-text>{{kat.kayittarihi | date:'dd.MM.yyyy HH:mm:ss'}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Düzenlenme Tarihi</ion-label>
+          <ion-text>{{kat.duzenlemetarihi | date:'dd.MM.yyyy HH:mm:ss'}}</ion-text>
+        </ion-item>
+
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" color="tertiary" id="{{kat.adi}}-modalduzenle" (click)="patchValueGetir(kat)" [disabled]="servis.aktifUye.admin == 0">
+              Düzenle
+            </ion-button>
+          </ion-col>
+          <ion-modal #modalkatduzenle trigger="{{kat.adi}}-modalduzenle" [presentingElement]="presentingElement4">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar color="tertiary">
+                  <ion-title>Kategori Düzenleme</ion-title>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="modalkatduzenle.dismiss()">Kapat</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content>
+                <form [formGroup]="frm" (ngSubmit)="kategoriDuzenle()">
+                  <ion-list>
+                    <ion-item>
+                      <ion-label>Kategori Adı:&nbsp;&nbsp;&nbsp;</ion-label>
+                      <ion-input type="text" formControlName="adi"></ion-input>
+                    </ion-item>
+                    <ion-input type="hidden" formControlName="id"></ion-input>
+                    <ion-input type="hidden" formControlName="kayittarihi"></ion-input>
+                    <ion-input type="hidden" formControlName="duzenlemetarihi"></ion-input>
+
+                  </ion-list>
+                  <ion-row>
+                    <ion-col>
+                      <ion-button color="tertiary" expand="block">
+                        <ion-input type="submit" value="Kaydet"></ion-input>
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </form>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+          <ion-col>
+            <ion-button expand="block" color="danger" id="{{kat.id}}-modalsil" (click)="sil(kat)" [disabled]="servis.aktifUye.admin == 0">Sil</ion-button>
+          </ion-col>
+          <ion-modal #modalimsil trigger="{{kat.id}}-modalsil" [presentingElement]="presentingElement5">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar color="tertiary">
+                  <ion-title>Üye Silme</ion-title>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="modalimsil.dismiss()">Kapat</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content>
+                <ion-row>
+                  <ion-col>
+                    <h4><b>{{kat.adi}} </b>isimli kategori silinecektir onaylıyor musunuz ?</h4>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-button expand="block" color="danger" (click)="kategoriSil()">Evet</ion-button>
+                  </ion-col>
+                  <ion-col>
+                    <ion-button expand="block" color="primary" (click)="modalimsil.dismiss()">Vazgeç</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+
+        </ion-row>
+        <br><br><br>
+      </ion-list>
+    </ion-grid>
+  </ion-content>
+</div>

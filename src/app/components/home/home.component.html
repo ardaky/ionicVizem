@@ -1,0 +1,18 @@
+<ion-content>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Ana Sayfa</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menum"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-text *ngIf="!servis.oturumKontrol()">Lütfen Oturum Açınız</ion-text>
+      <ion-title *ngIf="servis.oturumKontrol()">Hoşgeldiniz {{servis.aktifUye.adsoyad}}</ion-title>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
